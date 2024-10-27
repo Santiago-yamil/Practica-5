@@ -54,12 +54,13 @@ public class Menu implements Serializable {
 				//agregar nuevo experto 
 				break;
 			case 2: 
-			if(operaciones.buscarControl(experto)!=null){menuActualizarExperto(operaciones.buscarControl(experto));break;}
+				comodin =operaciones.buscarControl(experto);
+			if(comodin!=null){menuActualizarExperto(comodin);break;}
 				System.out.println("\nNo se encontro");
 				//Actualizar datos de un experto 
 				break;
-			case 3:
-				if(operaciones.buscarControl(experto)!=null) {experto.delete(operaciones.buscarPosicionExperto(experto));break;}
+			case 3:comodin =operaciones.buscarControl(experto);
+				if(comodin!=null) {experto.delete(operaciones.buscarPosicionExperto(experto));break;}
 				System.out.println("\nNo se encontro");
 				// Eliminar el experto de la lista 
 				break;
@@ -82,8 +83,11 @@ public class Menu implements Serializable {
 			case 6:
 				comodin=operaciones.buscarControl(experto);
 				if(comodin!=null) {
-					if(comodin.getAgendaExperto()!=null) {
-					actualizarAgenda(operaciones.buscarAgenda(comodin.getAgendaExperto()));break;
+					if(comodin.getAgendaExperto().size()!=0) {
+						agenda =operaciones.buscarAgenda(comodin.getAgendaExperto());
+						if(agenda!=null) {
+						actualizarAgenda(agenda);break;}
+						else {System.out.println("\n no se encontro");break;}
 					}
 					System.out.println("\nno hay agendas");
 				}
